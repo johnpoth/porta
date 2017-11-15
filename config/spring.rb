@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 Spring.after_fork do
   FactoryBot.reload if defined?(FactoryBot)
   MessageBus.after_fork if defined?(MessageBus)
 end
 
-%w(
+%w[
   .ruby-version
   .rbenv-vars
   tmp/restart.txt
   tmp/caching-dev.txt
-).each { |path| Spring.watch(path) }
+].each { |path| Spring.watch(path) }
