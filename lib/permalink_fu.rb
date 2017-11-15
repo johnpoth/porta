@@ -23,7 +23,7 @@ module PermalinkFu
     # Specifies the given field(s) as a permalink, meaning it is passed through PermalinkFu.escape and set to the permalink_field.  This
     # is done
     #
-    #   class Foo < ActiveRecord::Base
+    #   class Foo < ApplicationRecord
     #     # stores permalink form of #title to the #permalink attribute
     #     has_permalink :title
     #
