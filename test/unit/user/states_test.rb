@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require 'test_helper'
 
 class User::StatesTest < ActiveSupport::TestCase
 
@@ -6,15 +6,11 @@ class User::StatesTest < ActiveSupport::TestCase
     account = FactoryBot.create(:simple_provider)
 
     user1 = FactoryBot.create(:admin, account: account)
+    ThreeScale::Analytics.expects(:track).with(user1, instance_of(String)).once
     user1.activate!
 
     user2 = FactoryBot.create(:admin, account: account)
     user2.activate!
-
-    ThreeScale::Analytics.expects(:track).with(user1, instance_of(String)).once
-
-    user1.send(:_run_after_commit_queue)
-    user2.send(:_run_after_commit_queue)
   end
 
   test 'initializes activation_code upon creation' do
