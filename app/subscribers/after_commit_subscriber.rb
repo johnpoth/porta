@@ -27,7 +27,7 @@ class AfterCommitSubscriber
 
     delegate :logger, to: :Rails
 
-    def before_committed!
+    def before_committed!(*)
       # noop
     end
   end
