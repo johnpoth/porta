@@ -201,8 +201,9 @@ class Service < ApplicationRecord
   end
 
   def preffix
-    @service_preffix ||= (provider.service_preffix || '')
+    @service_preffix ||= service_preffix.to_s
   end
+  delegate :service_preffix, to: :provider, allow_nil: true
 
   # by GrammarNazi
   alias prefix preffix
