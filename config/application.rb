@@ -32,10 +32,15 @@ module System
   mattr_accessor :redis
 
   class Application < Rails::Application
+    def config_for(*args)
+      config = super
+      return config unless config.is_a?(Hash)
+      config.with_indifferent_access
+    end
 
     def simple_try_config_for(*args)
       config_for(*args)
-    rescue ConfigFor::ReadError, ConfigFor::MissingEnvironmentError => error
+    rescue => error
       warn "[Warning][ConfigFor] Failed to load config with: #{error}" if $VERBOSE
       nil
     end
