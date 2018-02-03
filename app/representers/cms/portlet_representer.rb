@@ -8,7 +8,6 @@ module CMS::PortletRepresenter
   property :title
   property :portlet_type
   property :name
-  property :description
 
   with_options(if: lambda {|options| options[:short] == false }) do |p|
     p.property :draft
