@@ -172,7 +172,7 @@ gem 'draper', '~> 3.0'
 
 group :development do
   gem 'listen'
-  gem 'spring', '2.0.0', require: false
+  gem 'spring', '2.0.2', require: false
   gem 'spring-commands-rubocop'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
