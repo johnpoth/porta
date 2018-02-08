@@ -61,7 +61,7 @@ class ApplicationPlan < Plan
 
       xml.setup_fee setup_fee
       xml.cost_per_month cost_per_month
-      xml.trial_period_days trial_period_days
+      xml.trial_period_days trial_period_days.to_i
       xml.cancellation_period cancellation_period
     end
 
