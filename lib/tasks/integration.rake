@@ -364,7 +364,7 @@ namespace :integrate do
 
     silence_stream(STDOUT) do
       require 'system/database'
-      ParallelTests::Tasks.run_in_parallel('RAILS_ENV=test rake db:drop db:create db:schema:load db:procedures multitenant:triggers')
+      ParallelTests::Tasks.run_in_parallel('DISABLE_DATABASE_ENVIRONMENT_CHECK=1 RAILS_ENV=test rake db:drop db:create db:schema:load db:procedures multitenant:triggers')
       Rake::Task['ts:configure'].invoke
     end
   end
