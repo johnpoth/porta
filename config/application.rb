@@ -68,8 +68,13 @@ module System
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # FIXME: [rails 5.x] In order to make it thread-safe, please do:
+    # - remove `config.enable_dependency_loading = true`
+    # - remove `config.autoload_paths += %W(#{config.root.join('lib')})`
+    # - put all the constants that needs to be loaded in app/lib so they can be `eager_load!`
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root.join('lib')})
+    config.enable_dependency_loading = true
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
