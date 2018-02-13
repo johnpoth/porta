@@ -18,14 +18,4 @@ class Provider::Admin::CMS::SwitchesControllerTest < ActionDispatch::Integration
     assert_select '#switch-finance-toggle', true
     assert_select %Q(table#switches th), text: 'Finance', count: 1
   end
-
-  test "show a  switch" do
-    @provider.settings.update_attribute(:account_plans_switch,'hidden')
-
-    xhr :put, provider_admin_cms_switch_path('account_plans', format: :js)
-    assert_response :success
-
-    assert @provider.settings.reload.switches[:account_plans].visible?, 'not visible'
-  end
 end
-
