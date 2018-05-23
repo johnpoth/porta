@@ -164,7 +164,10 @@ GEM
       activemodel (= 5.0.6)
       activesupport (= 5.0.6)
       arel (~> 7.0)
-    activerecord-oracle_enhanced-adapter (1.6.9)
+    activerecord-oracle_enhanced-adapter (1.7.11)
+      activerecord (~> 5.0.0)
+      arel (~> 7.1.4)
+      ruby-plsql (>= 0.5.0)
     activesupport (5.0.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -671,6 +674,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-oci8 (2.2.6.1)
     ruby-openid (2.7.0)
+    ruby-plsql (0.7.1)
     ruby-prof (0.17.0)
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
@@ -841,7 +845,7 @@ DEPENDENCIES
   active_merchant-adyen12!
   activemerchant (~> 1.77.0)
   activemodel-serializers-xml
-  activerecord-oracle_enhanced-adapter (~> 1.6.0)
+  activerecord-oracle_enhanced-adapter (~> 1.7.0)
   acts-as-taggable-on (~> 4.0)
   acts_as_list (~> 0.7.6)
   acts_as_tree
