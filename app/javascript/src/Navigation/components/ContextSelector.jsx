@@ -11,8 +11,6 @@ import { ActiveMenuTitle } from 'Navigation/components/ActiveMenuTitle'
 
 import 'Navigation/styles/ContextSelector.scss'
 
-const DASHBOARD_PATH = '/p/admin/dashboard'
-
 import type { Api, Service, Menu, ReactWrapper } from 'Types'
 
 type Props = {
@@ -25,6 +23,8 @@ type Props = {
 type State = {
   filterQuery: string
 }
+
+const DASHBOARD_PATH = '/p/admin/dashboard'
 
 class ContextSelector extends React.Component<Props, State> {
   state = {
