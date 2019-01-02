@@ -159,7 +159,7 @@ class Topic < ApplicationRecord
   end
 
   def count_user_posts_for_counter_cache
-    @user_posts = posts.where.not(user_id: nil).group(:user_id).count
+    @user_posts = posts.where.not(user_id: nil).unscope(:order).group(:user_id).count
   end
 
   def update_cached_forum_and_user_counts
