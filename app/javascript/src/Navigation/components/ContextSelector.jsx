@@ -55,7 +55,7 @@ class ContextSelector extends React.Component<Props, State> {
     )
   }
 
-  getClassNamesForMenu (menu: Menu) {
+  getClassNamesForMenu (menu: Menu): string {
     const { activeMenu } = this.props
 
     if (menu === 'dashboard' && activeMenu === 'dashboard' ||
@@ -66,7 +66,7 @@ class ContextSelector extends React.Component<Props, State> {
     return 'PopNavigation-link'
   }
 
-  getClassNamesForService (service: Service) {
+  getClassNamesForService (service: Service): string {
     const { activeMenu, currentApi } = this.props
     let classNames = 'PopNavigation-link'
 
