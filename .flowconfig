@@ -10,7 +10,4 @@
 
 [options]
 module.name_mapper.extension='scss' -> 'empty/object'
-module.name_mapper='^Dashboard\(.*\)$' -> '<PROJECT_ROOT>/app/javascript/src/Dashboard/\1'
-module.name_mapper='^Navigation\(.*\)$' -> '<PROJECT_ROOT>/app/javascript/src/Navigation/\1'
-module.name_mapper='^Policies\(.*\)$' -> '<PROJECT_ROOT>/app/javascript/src/Policies/\1'
-module.name_mapper='^Types\(.*\)$' -> '<PROJECT_ROOT>/app/javascript/src/Types/\1'
+module.name_mapper='\(Dashboard\|Navigation\|Policies\|Types\)\(.*\)$' -> '<PROJECT_ROOT>/app/javascript/src/\1/\2'
