@@ -17,9 +17,18 @@ class PolicyForm extends Form {
   }
 }
 
+type Props = {
+  visible: boolean,
+  policy: ChainPolicy,
+  submitForm: (ChainPolicy) => ThunkAction,
+  removePolicy: (ChainPolicy) => ThunkAction,
+  closePolicyConfig: () => ThunkAction,
+  updatePolicy: (ChainPolicy) => UpdatePolicyConfigAction
+}
+
 function PoliciesForm ({
   visible, policy, submitForm, updatePolicy, removePolicy,
-  closePolicyConfig}) {
+  closePolicyConfig}: Props) {
   const onSubmit = (policy) => {
     return ({formData, schema}) => {
       submitForm({...policy, ...{schema, configuration: formData}})
