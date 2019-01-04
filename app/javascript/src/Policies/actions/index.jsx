@@ -1,12 +1,12 @@
 // @flow
 
-import type { Dispatch, ThunkAction } from 'types/index'
+import type { Dispatch, ThunkAction } from 'Policies/types/index'
 import type {
   RawRegistry,
   RegistryPolicy,
   ChainPolicy,
   StoredChainPolicy
-} from 'types/Policies'
+} from 'Policies/types/Policies'
 import type { UIComponent } from 'Policies/actions/UISettings'
 
 import { uiComponentTransition } from 'Policies/actions/UISettings'
