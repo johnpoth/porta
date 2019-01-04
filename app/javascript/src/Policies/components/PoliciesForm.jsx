@@ -10,7 +10,7 @@ import type { ChainPolicy } from 'Policies/types/Policies'
 import type { UpdatePolicyConfigAction } from 'Policies/actions/PolicyConfig'
 
 class PolicyForm extends Form {
-  componentWillReceiveProps (nextProps: Object) {
+  componentWillReceiveProps (nextProps: Props) {
     if (nextProps.schema !== this.state.schema) {
       this.setState({...this.getStateFromProps(nextProps), ...{errors: []}})
     }
@@ -18,6 +18,7 @@ class PolicyForm extends Form {
 }
 
 type Props = {
+  schema?: string,
   visible: boolean,
   policy: ChainPolicy,
   submitForm: (ChainPolicy) => ThunkAction,

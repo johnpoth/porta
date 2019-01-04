@@ -60,7 +60,7 @@ class InlineChart extends Component<Props, State> {
 
   generateC3Chart () {
     const nodeElem = this.c3ChartContainer.current
-    const optionsObj = {
+    c3.generate({
       bindto: nodeElem,
       axis: {
         x: { show: false },
@@ -83,8 +83,7 @@ class InlineChart extends Component<Props, State> {
           nodeElem.style.maxHeight = 'none'
         }
       }
-    }
-    c3.generate(optionsObj)
+    })
   }
 
   getTotalAsString (total: number, unit: string): string {
