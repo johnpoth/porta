@@ -79,7 +79,9 @@ class InlineChart extends Component<Props, State> {
         }
       },
       onresize: function () {
-        nodeElem.style.maxHeight = 'none'
+        if (nodeElem !== null) {
+          nodeElem.style.maxHeight = 'none'
+        }
       }
     }
     c3.generate(optionsObj)
