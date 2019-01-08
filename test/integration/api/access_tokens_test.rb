@@ -69,6 +69,54 @@ class Admin::Api::AccessTokensTest < ActionDispatch::IntegrationTest
     assert_token_values(user_id)
   end
 
+  test 'delete an access_token by its own admin user' do
+    access_token_authorization = FactoryBot.create(:access_token, owner: @admin, scopes: %w[account_management])
+    access_token_object_to_destroy = FactoryBot.create(:access_token, owner: @admin, scopes: %w[cms finance])
+
+    request_delete_params = {id: access_token_object_to_destroy.id, access_token: access_token_authorization.value, user_id: @admin.id, format: :json}
+    delete admin_api_user_access_token_path(request_delete_params)
+
+    assert_response :ok
+    assert_raise(ActiveRecord::RecordNotFound) { access_token_object_to_destroy.reload }
+    assert_empty response.body
+  end
+
+  test 'delete an access_token by its own member user with all permissions' do
+    @member.member_permissions.create!(admin_section: :partners)
+    access_token_object_to_destroy = FactoryBot.create(:access_token, owner: @member, scopes: %w[cms finance])
+    access_token_authorization = FactoryBot.create(:access_token, owner: @member, scopes: %w[account_management])
+    request_delete_params = {id: access_token_object_to_destroy.id, user_id: @member.id, access_token: access_token_authorization.value, format: :json}
+
+    access_token_authorization.update_column(:permission, 'rw')
+    delete admin_api_user_access_token_path(request_delete_params)
+    assert_response :ok
+    assert_raise(ActiveRecord::RecordNotFound) { access_token_object_to_destroy.reload }
+    assert_empty response.body
+  end
+
+  test 'delete an access_token by its own member user without member permissions' do
+    access_token_authorization = FactoryBot.create(:access_token, owner: @member, scopes: %w[account_management])
+    access_token_object_to_destroy = FactoryBot.create(:access_token, owner: @member, scopes: %w[cms finance])
+    request_delete_params = {id: access_token_object_to_destroy.id, user_id: @member.id, access_token: access_token_authorization.value, format: :json}
+
+    delete admin_api_user_access_token_path(request_delete_params)
+    assert_response :forbidden
+    assert access_token_object_to_destroy.reload
+    assert_equal 'Your access token does not have the correct permissions', JSON.parse(response.body)['error']
+  end
+
+  test 'delete an access_token by its own member user with a token that does not have account_management scope' do
+    @member.member_permissions.create!(admin_section: :partners)
+    access_token_object_to_destroy = FactoryBot.create(:access_token, owner: @member, scopes: %w[cms finance])
+    access_token_authorization = FactoryBot.create(:access_token, owner: @member, scopes: %w[finance])
+    request_delete_params = {id: access_token_object_to_destroy.id, user_id: @member.id, access_token: access_token_authorization.value, format: :json}
+
+    delete admin_api_user_access_token_path(request_delete_params)
+    assert_response :forbidden
+    assert access_token_object_to_destroy.reload
+    assert_equal 'Your access token does not have the correct permissions', JSON.parse(response.body)['error']
+  end
+
   protected
 
   def assert_token_values(user_id)

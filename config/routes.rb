@@ -599,7 +599,7 @@ without fake Core server your after commit callbacks will crash and you might ge
           resource :permissions, controller: 'member_permissions', only: [:show, :update]
         end
 
-        resource :access_tokens, only: %i(create)
+        resources :access_tokens, only: %i(create destroy)
       end
       resources :end_user_plans, :only => [:index] do
         scope module: :end_user_plans do

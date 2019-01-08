@@ -35,6 +35,27 @@ class Admin::Api::AccessTokensController < Admin::Api::BaseController
     respond_with access_token
   end
 
+  ##~ e = sapi.apis.add
+  ##~ e.path = "/admin/api/users/{user_id}/access_tokens/{id}.json"
+  ##~ e.responseClass = "access_token"
+  #
+  ##~ op            = e.operations.add
+  ##~ op.httpMethod = "DELETE"
+  ##~ op.summary    = "Access Token Delete"
+  ##~ op.description = "Deletes an access token."
+  ##~ op.group = "access_token"
+  #
+  ##~ op.parameters.add :name => "user_id", :description => "ID of the user.", :dataType => "integer", :paramType => "path", :required => true
+  ##~ op.parameters.add :name => "id", :description => "ID of the access token.", :dataType => "integer", :paramType => "path", :required => true
+  #
+  ##~ op.parameters.add @parameter_access_token
+  #
+  def destroy
+    access_token = user.access_tokens.find(params[:id])
+    access_token.destroy
+    respond_with access_token
+  end
+
   protected
 
   def access_token_params
