@@ -117,6 +117,19 @@ class Admin::Api::AccessTokensTest < ActionDispatch::IntegrationTest
     assert_equal 'Your access token does not have the correct permissions', JSON.parse(response.body)['error']
   end
 
+  test 'show responds with the right access token and does not return the value' do
+    @member.member_permissions.create!(admin_section: :partners)
+    access_token_authorization = FactoryBot.create(:access_token, owner: @member, scopes: %w[account_management])
+    access_token_object = FactoryBot.create(:access_token, owner: @member, scopes: %w[cms finance])
+
+    get admin_api_user_access_token_path({id: access_token_object.id, user_id: @member.id, access_token: access_token_authorization.value, format: :json})
+    assert_response :ok
+    json_response = JSON.parse(response.body)
+    assert_equal access_token_object.id, json_response.dig('access_token', 'id')
+    refute json_response.dig('access_token', 'value')
+  end
+
+
   protected
 
   def assert_token_values(user_id)

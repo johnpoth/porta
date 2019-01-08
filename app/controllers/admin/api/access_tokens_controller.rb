@@ -40,6 +40,25 @@ class Admin::Api::AccessTokensController < Admin::Api::BaseController
   ##~ e.responseClass = "access_token"
   #
   ##~ op            = e.operations.add
+  ##~ op.httpMethod = "GET"
+  ##~ op.summary    = "Access Token Read"
+  ##~ op.description = "Shows an access token."
+  ##~ op.group = "access_token"
+  #
+  ##~ op.parameters.add :name => "user_id", :description => "ID of the user.", :dataType => "integer", :paramType => "path", :required => true
+  ##~ op.parameters.add :name => "id", :description => "ID of the access token.", :dataType => "integer", :paramType => "path", :required => true
+  #
+  ##~ op.parameters.add @parameter_access_token
+  #
+  def show
+    respond_with token
+  end
+
+  ##~ e = sapi.apis.add
+  ##~ e.path = "/admin/api/users/{user_id}/access_tokens/{id}.json"
+  ##~ e.responseClass = "access_token"
+  #
+  ##~ op            = e.operations.add
   ##~ op.httpMethod = "DELETE"
   ##~ op.summary    = "Access Token Delete"
   ##~ op.description = "Deletes an access token."
@@ -51,12 +70,16 @@ class Admin::Api::AccessTokensController < Admin::Api::BaseController
   ##~ op.parameters.add @parameter_access_token
   #
   def destroy
-    access_token = user.access_tokens.find(params[:id])
-    access_token.destroy
-    respond_with access_token
+    token.destroy
+    respond_with token
   end
 
   protected
+
+  def token
+    # It has this name to don't override the access_token used for authentication
+    @token ||= user.access_tokens.find(params[:id])
+  end
 
   def access_token_params
     params.require(:token).permit(:name, :permission, scopes: [])
