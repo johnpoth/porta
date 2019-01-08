@@ -20,7 +20,7 @@ class Admin::Api::AccessTokensController < Admin::Api::BaseController
   ##~ op = e.operations.add
   ##~ op.httpMethod = "POST"
   ##~ op.summary   = "Access Token Create"
-  ##~ op.description = "Creates an access token."
+  ##~ op.description = "Creates an access token. Make sure to copy your new personal access token now. You won’t be able to see it again as it isn’t stored for security reasons."
   ##~ op.group = "access_token"
   #
   ##~ op.parameters.add :name => "user_id", :description => "ID of the user.", :dataType => "integer", :paramType => "path", :required => true
