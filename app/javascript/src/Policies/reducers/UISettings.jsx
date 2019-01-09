@@ -3,7 +3,7 @@
 import { initialState } from 'Policies/reducers/initialState'
 import { createReducer, updateError, updateObject } from 'Policies/reducers/util'
 
-import type { State } from 'Policies/types/State'
+import type { State, UIState } from 'Policies/types/State'
 import type { UIComponentTransitionAction } from 'Policies/actions/UISettings'
 
 function updateComponentTransition (state: State, action: UIComponentTransitionAction): State {
@@ -16,7 +16,8 @@ function updateRequestsCounter (number: number) {
   }
 }
 
-const UISettingsReducer = createReducer(initialState.ui, {
+// eslint-disable-next-line space-infix-ops
+const UISettingsReducer = createReducer<UIState>(initialState.ui, {
   'UI_COMPONENT_TRANSITION': updateComponentTransition,
   'FETCH_CHAIN_ERROR': updateError,
   'FETCH_REGISTRY_ERROR': updateError,

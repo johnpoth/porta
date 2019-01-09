@@ -33,7 +33,8 @@ function updateRegistry (state: RegistryState, action: FetchRegistrySuccessActio
   return updateArray(state, parsePolicies(action.payload))
 }
 
-const RegistryReducer = createReducer(initialState.registry, {
+// eslint-disable-next-line space-infix-ops
+const RegistryReducer = createReducer<RegistryState>(initialState.registry, {
   'LOAD_REGISTRY_SUCCESS': updateRegistry,
   'FETCH_REGISTRY_SUCCESS': updateRegistry
 })

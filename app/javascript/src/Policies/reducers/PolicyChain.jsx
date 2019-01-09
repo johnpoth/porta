@@ -11,7 +11,7 @@ import type {
   UpdatePolicyChainAction
 } from 'Policies/actions/PolicyChain'
 
-type UpdateChainPolicies = FetchChainSuccessAction | SortPolicyChainAction
+export type UpdateChainPolicies = FetchChainSuccessAction | SortPolicyChainAction
 
 function createChainPolicy (policy: RegistryPolicy): ChainPolicy {
   return {...policy, ...{schema: policy.schema, humanName: policy.humanName, enabled: true, removable: true, uuid: generateGuid()}}
@@ -29,7 +29,8 @@ function updatePolicies (state: ChainState, action: UpdateChainPolicies): ChainS
   return updateArray(state, action.payload)
 }
 
-const ChainReducer = createReducer(initialState.chain, {
+// eslint-disable-next-line space-infix-ops
+const ChainReducer = createReducer<ChainState>(initialState.chain, {
   'ADD_POLICY_TO_CHAIN': addPolicy,
   'SORT_POLICY_CHAIN': updatePolicies,
   'LOAD_CHAIN_SUCCESS': updatePolicies,

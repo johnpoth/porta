@@ -10,7 +10,8 @@ function updatePolicyConfig (state: ChainPolicy, action: UpdatePolicyConfigActio
   return updateObject(state, action.policyConfig)
 }
 
-const PolicyConfigReducer = createReducer(initialState.policyConfig, {
+// eslint-disable-next-line space-infix-ops
+const PolicyConfigReducer = createReducer<ChainPolicy>(initialState.policyConfig, {
   'UPDATE_POLICY_CONFIG': updatePolicyConfig
 })
 

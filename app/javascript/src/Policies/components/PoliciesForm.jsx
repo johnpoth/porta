@@ -79,7 +79,7 @@ function PoliciesForm ({
   )
 }
 
-function hiddenClass (bool: boolean): string {
+function hiddenClass (bool?: boolean): string {
   return bool ? '' : 'hidden'
 }
 
