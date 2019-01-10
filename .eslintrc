@@ -74,6 +74,9 @@
     "flowtype/valid-syntax": 1
   },
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "flowtype": {
       "onlyFilesWithFlowAnnotation": true
     }
