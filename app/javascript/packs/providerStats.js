@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import { statsUsage } from 'Stats/provider/stats_usage'
 import { statsDaysOfWeek } from 'Stats/provider/stats_days_of_week'
 import { statsHoursOfDay } from 'Stats/provider/stats_hours_of_day'

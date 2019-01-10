@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import { statsApplication } from 'Stats/buyer'
 import $ from 'jquery'
 

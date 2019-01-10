@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import { widget as dashboardWidget } from 'Dashboard/index'
 import { initialize as toggleWidget } from 'Dashboard/toggle'
 import { render as renderChartWidget } from 'Dashboard/chart'

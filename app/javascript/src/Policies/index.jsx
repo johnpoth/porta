@@ -1,9 +1,3 @@
-/* eslint-disable import/default */
-import 'core-js/modules/es6.set'
-import 'core-js/modules/es6.map'
-import 'core-js/es7/array'
-import 'core-js/es7/object'
-
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'

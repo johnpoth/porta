@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import initPolicies from 'Policies/index'
 
 document.addEventListener('DOMContentLoaded', () => {

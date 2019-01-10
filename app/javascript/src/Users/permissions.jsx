@@ -1,7 +1,4 @@
 /** @jsx element */
-
-import 'core-js/fn/object/assign' // make Object.assign on IE 11
-import 'core-js/fn/array/includes'
 import {dom, element} from 'decca' // eslint-disable-line no-unused-vars
 import classNames from 'classnames'
 

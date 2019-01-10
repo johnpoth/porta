@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import { render as renderPermissionsWidget } from 'Users/permissions'
 
 document.addEventListener('DOMContentLoaded', () => {
