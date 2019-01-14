@@ -11,7 +11,9 @@ function updatePolicyConfig (state: ChainPolicy, action: UpdatePolicyConfigActio
 }
 
 // eslint-disable-next-line space-infix-ops
-const PolicyConfigReducer = createReducer<ChainPolicy>(initialState.policyConfig, {
+// const PolicyConfigReducer = createReducer<ChainPolicy>(initialState.policyConfig, {
+// $FlowFixMe TODO: in order to fully type createReducer, set UIState and re-enable flow. (use lines above)
+const PolicyConfigReducer = createReducer(initialState.policyConfig, {
   'UPDATE_POLICY_CONFIG': updatePolicyConfig
 })
 

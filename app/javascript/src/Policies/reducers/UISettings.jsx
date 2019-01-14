@@ -3,7 +3,7 @@
 import { initialState } from 'Policies/reducers/initialState'
 import { createReducer, updateError, updateObject } from 'Policies/reducers/util'
 
-import type { State, UIState } from 'Policies/types/State'
+import type { State } from 'Policies/types/State'
 import type { UIComponentTransitionAction } from 'Policies/actions/UISettings'
 
 function updateComponentTransition (state: State, action: UIComponentTransitionAction): State {
@@ -17,7 +17,9 @@ function updateRequestsCounter (number: number) {
 }
 
 // eslint-disable-next-line space-infix-ops
-const UISettingsReducer = createReducer<UIState>(initialState.ui, {
+// const UISettingsReducer = createReducer<UIState>(initialState.ui, {
+// $FlowFixMe TODO: in order to fully type createReducer, set UIState and re-enable flow. (use lines above)
+const UISettingsReducer = createReducer(initialState.ui, {
   'UI_COMPONENT_TRANSITION': updateComponentTransition,
   'FETCH_CHAIN_ERROR': updateError,
   'FETCH_REGISTRY_ERROR': updateError,
